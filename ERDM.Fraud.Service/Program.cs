@@ -1,5 +1,6 @@
 using ERDM.Fraud.Service.Application.Behaviors;
 using ERDM.Fraud.Service.Application.Commands.Handlers;
+using ERDM.Fraud.Service.Application.Mappings;
 using ERDM.Fraud.Service.Domain.Events;
 using ERDM.Fraud.Service.Infrastructure.EventHandlers;
 using ERDM.Fraud.Service.Infrastructure.ReadModels;
@@ -167,10 +168,14 @@ builder.Services.AddTransient<INotificationHandler<SyntheticIdentityDetectedEven
 // Add AutoMapper
 builder.Services.AddAutoMapper(cfg =>
 {
-    // Add your mapping profiles here
-    // cfg.AddProfile<DeviceFingerprintMappingProfile>();
-    // cfg.AddProfile<FraudCaseMappingProfile>();
-    // cfg.AddProfile<IdentityVerificationMappingProfile>();
+    // Device Fingerprint Mapping
+    cfg.AddProfile<DeviceFingerprintMappingProfile>();
+
+    // Identity Verification Mapping
+    cfg.AddProfile<IdentityVerificationMappingProfile>();
+
+    // Fraud Case Mapping
+    cfg.AddProfile<FraudCaseMappingProfile>();
 });
 
 // Add CORS
