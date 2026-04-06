@@ -140,6 +140,10 @@ builder.Services.AddScoped<IBiometricService, BiometricService>();
 builder.Services.AddScoped<ISanctionsScreeningService, SanctionsScreeningService>();
 builder.Services.AddScoped<ISyntheticIdentityDetectionService, SyntheticIdentityDetectionService>();
 
+builder.Services.AddScoped<IFraudAlertService, FraudAlertService>();
+builder.Services.AddScoped<IFraudAlertReadRepository, FraudAlertReadRepository>();
+builder.Services.AddScoped<IFraudAlertWriteRepository, FraudAlertWriteRepository>();
+
 // Register Cache Service
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<ICacheService, MemoryCacheService>();
@@ -176,6 +180,9 @@ builder.Services.AddAutoMapper(cfg =>
 
     // Fraud Case Mapping
     cfg.AddProfile<FraudCaseMappingProfile>();
+
+    // Fraud Alert Mapping
+    cfg.AddProfile<FraudAlertMappingProfile>();
 });
 
 // Add CORS
